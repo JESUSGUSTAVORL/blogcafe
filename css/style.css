@@ -1,0 +1,245 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+    font-size: 62.5%; /* 1rem = 10px   usar rem es mucho mejor para dispositivos moviles*/
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.6rem; /* es igual a 16px*/
+    line-height: 2;
+}
+
+
+/** Globales **/
+.contenedor{
+    max-width: 1200px;
+    width: 95%; /*Para que las letras no queden tan al borde y cuesten trabajo de leer*/
+    margin: 0 auto;
+}
+h1, h2, h3 h4{
+    font-family: 'PT Sans', sans-serif;
+}
+
+/*nuestro sistema de fuentes*/
+h1{
+    font-size: 4.8rem;
+}
+h2{
+    font-size: 4rem;
+    line-height: 1.2;
+}
+h3{
+    font-size: 3.2rem;
+}
+h4{
+    font-size: 2.8rem;
+}
+img{
+    max-width: 100%;
+}
+
+/** Utilidades **/
+.centrar-texto{
+    text-align: center;
+}
+
+.no-margin{
+    margin: 0;
+}
+
+/** Botones **/
+.btn {
+    display: block; /*toma todo el ancho*/
+    text-align: center;
+    padding: 1rem 3rem;
+    margin: 2rem 0;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+
+@media ( min-width: 480px ){
+    .btn{
+        display: inline-block;/*en lugar de display block que toma todo el espacion,
+                               y de esta forma el ancho va ser definido por medio del padding*/
+    }
+}
+
+
+.btn-primario{
+    background-color: #000000;
+}
+
+.btn-secundario{
+    background-color: chocolate;
+}
+
+/** Header **/
+
+.barra{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /*Alinea el texto de Nosotros Cursos Contacto*/
+}
+
+.site-header{
+    background-image: url(../img/banner.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 60rem;
+}
+.site-header a{
+    color: #ffffff;
+    text-decoration: none;
+}
+.site-header h1{
+    text-align: center;
+    font-weight: 400;
+}
+.site-header h1 span{
+    font-weight: 700;
+}
+
+/** navegacion **/
+.navegacion a{
+    text-align: center;
+    display: block; /*para darle a cada elemento su propia linea*/
+    font-size: 1.8rem;
+    color: white;
+    text-decoration: none;
+}
+@media ( min-width: 768px ){
+    .navegacion a{
+        display: inline;
+        margin-right: 2rem; /* Les da separacion a los nombres de los link Nosotros Cursos Contacto*/
+    }
+    .navegacion a:last-of-type{
+        margin: 0; /*Agrega mas separacion*/
+    }
+}
+
+/** header texto **/
+.texto-header{
+    color: #ffffff;
+    text-align: center;
+    margin-top: 5rem;
+}
+@media ( min-width: 768px ){
+    .texto-header{
+        margin-top: 15rem;/*Da mas separacion al texto Blog de Cafe y lo centra*/
+    }
+}
+.texto-header p{
+    font-size: 2.2rem;
+}
+
+/* Contenido Principal Home */
+.contenido-principal{ /*Divide en 2 el div   <div class="contenido-principal contenedor">
+                                                   <main class="blog">*/
+    display: flex;
+    flex-wrap: wrap;/* Coloca abajo el div cursos*/
+}
+.blog,
+.cursos{ /*Posiciona los div blog y cursos en el 100% de la pantalla*/
+    flex: 0 0 100%;
+    /*flex-grow: 0;   hacen lo mismo que la linea de arriba
+    flex-shrink: 0;
+    flex-basis: 100%;*/
+}
+.cursos{
+    order: -1;
+}
+
+@media ( min-width: 768px ){/*que hara en pantallas grandes como se vera en pantallas grandes*/
+    .contenido-principal{
+        justify-content: space-between;
+    }
+    .blog{
+        flex-basis: 66.6%; /* Ocupa o toma el 66.6 de la pantalla*/
+        order: -1; /*lo cambia de posicion a la izquierda el blog estara poosicionado a ese lado*/
+    }
+    .cursos{
+        flex-basis: calc(33.3% - 4rem);/* Ocupa o toma el 33.3 - 4rem de la pantalla, el 4rem empuja del lado derecho hacia el izquierdo dando margen*/
+    }
+}
+
+/** Opcional **/
+.entrada-blog{
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e1e1e1;
+}
+.entrada-blog:last-of-type{  /*se quita la linea en la ultima entrada*/
+    border: none;
+}
+
+
+/*.entrada-blog{
+    display: flex;
+    justify-content: space-between;
+}
+.entrada-blog .imagen {
+    flex: 0 0 40%;*/ /*toma el 40% del espacio el texto el otro 60% del espacio flex*/
+
+    /*   <article class="entrada-blog">
+           <div class="imagen">
+               <img src="img/blog1.jpg" alt="Imagen Blog">
+           </div><!-- Imagen-->
+           <div class="contenido-blog">
+}
+.entrada-blog .contenido-blog{
+  flex: 0 0 calc(60% - 2rem);*/ /*el 2rem da un espacion entre la columna de la imagen y del texto
+}*/
+
+/** Cursos Sidebar **/
+.cursos-lista{
+    padding: 0;
+    list-style: none;
+}
+.curso{
+    padding-bottom: 3rem;
+    border-bottom: 1px solid #e1e1e1;
+}
+.curso:last-of-type{
+    border-bottom: none;
+}
+.curso p{
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+}
+.curso p span{
+    font-weight: 400;/*Etiqueta span no agrega ninguna propiedad es natural entonces regresamos a 400 las letras contenidas dentr del span*/
+    font-size: 2rem;
+}
+
+/** Footer  **/
+.site-footer{
+    background-color: black;
+    padding: 1.5rem;
+    margin-top: 4rem;
+}
+
+.site-footer p{
+    color: white;
+    font-size: 4rem;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 400;
+    text-align: center;
+}
+.site-footer p span{
+    font-weight: 700;
+}
+
+@media ( max-width: 767px ) {
+    .barraFooter {
+        display: flex;
+        flex-direction: column; /*para que el texto de la navegacion nosotrops cursos se vea vertical*/
+    }
+}
